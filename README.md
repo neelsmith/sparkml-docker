@@ -12,7 +12,12 @@ The `docker` directory defines a docker image including Spark, scala and sbt.
 
 You can build this image and run distinct containers for a Spark cluster, and an environment for compiling and submitting apps to the Spark cluster.  
 
+The following notes assume you are working within the `docker` directory.
+
+
 ## Build
+
+
 
 1. `source envvars.sh` (or otherwise set environment variable `MYNAME`)
 2. `docker build -t $MYNAME/spark:latest .`
