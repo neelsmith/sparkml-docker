@@ -36,12 +36,15 @@ The Spark cluster is mapped to <http://localhost:8080/> in your host OS.
 
 `Ctl-C` will stop the process gracefully.  You can restart the master and any workers with `docker start spark-master docker_spark-worker_1 docker_spark-worker_2` ... `docker_spark-worker_N`
 
-## Start a container to package and submit Spark jobs
+## Start a second container for working with Spark
 
 
     docker run --rm -it -e SPARK_MASTER="spark://spark-master:7077" -v $(pwd):/local --network docker_spark-net  ssml/spark:latest /bin/bash
 
 This puts you in a bash shell in the container's `/local` directory, which is mapped to the current directory in your host OS.
+
+You can start a Spark shell with `/spark/bin/spark-shell`
+
 
 ## Examples of building and running a Spark app
 
