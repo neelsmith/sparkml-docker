@@ -24,12 +24,12 @@ You can build this image and run distinct containers for a Spark cluster, and an
 
 (or whatever number of workers you want to instantiate)    
 
-`Ctl-C` will stop the process gracefully.
 
 `docker-compose` brings up a Spark network named `docker_spark-net`
 The Spark cluster is mapped to <http://localhost:8080/> in your host OS.
 
 
+`Ctl-C` will stop the process gracefully.  You can restart the master and any workers with `docker start spark-master docker_spark-worker_1 docker_spark-worker_2` ... `docker_spark-worker_N`
 
 ## Start a container to package and submit Spark jobs
 
@@ -40,8 +40,10 @@ This puts you in a bash shell in `/local`, which is mapped to the current direct
 
 ## Examples of building and running a Spark app
 
+
+
     cd work/proj1
     sbt
     sbt:Sparkie> package
     sbt:Sparkie> exit
-    /spark/bin/spark-submit --master $SPARK_MASTER --class com.example.MyFirstScalaSpark target/scala-2.12/sparkie_2.12-0.1.0.jar 
+    /spark/bin/spark-submit --master $SPARK_MASTER --class com.example.MyFirstScalaSpark target/scala-2.12/sparkie_2.12-0.1.0.jar
