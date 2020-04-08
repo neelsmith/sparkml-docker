@@ -23,14 +23,14 @@ The following notes assume you are working within the `docker` directory.
 2. `docker build -t $MYNAME/spark:latest .`
 
 
-## Bring up the cluster
+## Bring up the Spark cluster
 
     docker-compose up --scale spark-worker=3
 
 (or whatever number of workers you want to instantiate)    
 
 
-`docker-compose` brings up a Spark network named `docker_spark-net`
+`docker-compose` creates a Spark network named `docker_spark-net`.
 The Spark cluster is mapped to <http://localhost:8080/> in your host OS.
 
 
@@ -41,10 +41,11 @@ The Spark cluster is mapped to <http://localhost:8080/> in your host OS.
 
     docker run --rm -it -e SPARK_MASTER="spark://spark-master:7077" -v $(pwd):/local --network docker_spark-net  ssml/spark:latest /bin/bash
 
-This puts you in a bash shell in `/local`, which is mapped to the current directory you are working in.
+This puts you in a bash shell in the container's `/local` directory, which is mapped to the current directory in your host OS.
 
 ## Examples of building and running a Spark app
 
+The `work` directory includes a "Hello, world"-level Spark application that you can package and submit to the Spark cluster as follows.
 
 
     cd work/proj1
