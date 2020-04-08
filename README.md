@@ -12,18 +12,20 @@ The `docker` directory defines a docker image including Spark, scala and sbt.
 
 You can build this image and run distinct containers for a Spark cluster, and an environment for compiling and submitting apps to the Spark cluster.  
 
-The following notes assume you are working within the `docker` directory.
+
 
 
 ## Build
 
-
+From within the `docker` directory,
 
 1. `source envvars.sh` (or otherwise set environment variable `MYNAME`)
 2. `docker build -t $MYNAME/spark:latest .`
 
 
 ## Bring up the Spark cluster
+
+From within the `docker` directory,
 
     docker-compose up --scale spark-worker=3
 
@@ -33,11 +35,11 @@ The following notes assume you are working within the `docker` directory.
 `docker-compose` creates a Spark network named `docker_spark-net`.
 The Spark cluster is mapped to <http://localhost:8080/> in your host OS.
 
-
 `Ctl-C` will stop the process gracefully.  You can restart the master and any workers with `docker start spark-master docker_spark-worker_1 docker_spark-worker_2` ... `docker_spark-worker_N`
 
 ## Start a second container for working with Spark
 
+You can start a second container from anywhere in your host OS:
 
     docker run --rm -it -e SPARK_MASTER="spark://spark-master:7077" -v $(pwd):/local --network docker_spark-net  ssml/spark:latest /bin/bash
 
@@ -48,7 +50,8 @@ You can start a Spark shell with `/spark/bin/spark-shell`
 
 ## Examples of building and running a Spark app
 
-The `work` directory includes a "Hello, world"-level Spark application that you can package and submit to the Spark cluster as follows.
+The `docker/work` directory includes a "Hello, world"-level Spark application that you can package and submit to the Spark cluster as follows.
+
 
 
     cd work/proj1
