@@ -16,5 +16,5 @@
 
 
     docker run --rm -it -e SPARK_MASTER="spark://spark-master:7077" \
-      -v $(pwd)/work:/project  --network docker-spark_spark-network \
-      scala-bash:latest 
+      -v $(pwd)/work:/project  --network base-cluster_spark-net \
+      scala-bash:latest
